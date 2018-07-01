@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+    
+    <!-- 数据源 -->
+    <bean id="myDataSource"  class="org.apache.commons.dbcp.BasicDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+      <property name="url" value="jdbc:mysql://localhost/bst?
+      useUnicode=true&amp;characterEncoding=utf-8"></property>
+      <property name="username" value="LISONG"></property>
+      <property name="password" value="123456"></property>
+    </bean>
+  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+       <property name="dataSource"  ref="myDataSource"></property>
+       <property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+    </bean>
+     
+     <!-- 注解方式 -->
+     <bean id="mapperScannerConfigurer"  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+         <property name="basePackage" value="com.zdr.ls.mapper"></property>    
+     </bean>
+
+
+     
+     <!-- 需要扫描的包 resource-pattern="mapper/*.class"指定只扫描子包mapper下的class文件-->
+     <context:component-scan base-package="com.zdr.ls"  ></context:component-scan>   
+    
+     <aop:aspectj-autoproxy proxy-target-class="true" ></aop:aspectj-autoproxy>
+   		   
+</beans>

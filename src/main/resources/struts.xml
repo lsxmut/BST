@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- 配置 Struts 可以受理的请求的扩展名 -->
+	<constant name="struts.action.extension" value="action,do,"></constant>
+	<!-- AOP空指针处理 -->
+	<constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+	
+   
+	<package name="login" namespace="/loginManagement" extends="json-default">
+	    <action name="loginAction" class="com.zdr.ls.action.loginAction" method="login">
+	       	<result name="login-success">/WEB-INF/pages/default.jsp</result>
+	    </action>
+	    
+	</package>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<!-- 业务分发 -->
+<!-- 	<package name="user" namespace="/user" extends="struts-default">
+	<action name="userAction" class="com.wisdomzone.action.userAction"
+		method="userList">
+		<result name="userList-success">/WEB-INF/pages/customerManagement/CustomerManagement.jsp
+		</result>
+	</action>
+	
+	<action name="toServiceDispatch">
+		<result name="success">/WEB-INF/pages/customerManagement/ServiceDispatch.jsp
+		</result>
+	</action>
+    </package> -->
+
+</struts>
